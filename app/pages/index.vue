@@ -1,11 +1,11 @@
 <template>
   <div>
-    <AddWatermark />
+    <AddWatermark :locale="locale" />
   </div>
 </template>
 
 <script setup lang="ts">
-// Uses default locale (en)
+const { locale } = useI18n()
 </script>
 
 <style scoped>
