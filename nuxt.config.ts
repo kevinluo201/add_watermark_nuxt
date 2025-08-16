@@ -33,6 +33,5 @@ export default defineNuxtConfig({
     // langDir: 'locales',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false
-  },
-  css: ['~/assets/styles.css']
+  }
 })
