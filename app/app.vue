@@ -2,6 +2,9 @@
   <NuxtPage />
 </template>
 
-<style>
-@import url("~/assets/styles.css");
-</style>
+
+<script setup lang="ts">
+import "~/assets/styles.css"
+</script>
+
+
