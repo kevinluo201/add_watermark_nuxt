@@ -32,14 +32,43 @@
             </div>
           </div>
         </div>
+        <div class="has-text-centered mb-5">
+          <div class="box" style="display: inline-block">
+            <canvas ref="canvas" />
+          </div>
+        </div>
+
+        <div id="action-buttons" class="mb-5">
+          <button
+            class="button is-success is-large is-responsive"
+            :disabled="!isImageLoaded"
+            @click="downloadImage"
+          >
+            <span class="icon">
+              <i class="fas fa-download" />
+            </span>
+            <span>{{ $t('download') }}</span>
+          </button>
+
+          <button
+            class="button is-danger is-large is-responsive"
+            :disabled="!isImageLoaded"
+            @click="resetImage"
+          >
+            <span class="icon">
+              <i class="fas fa-redo" />
+            </span>
+            <span>{{ $t('reset') }}</span>
+          </button>
+        </div>
 
         <div class="box">
           <div class="columns is-multiline">
             <div class="column is-6">
               <div class="field">
-                <label class="label" for="watermarkText">{{
-                  $t('watermarkText')
-                }}</label>
+                <label class="label" for="watermarkText">
+                  {{ $t('watermarkText') }}
+                </label>
                 <div class="control">
                   <input
                     id="watermarkText"
@@ -52,7 +81,7 @@
               </div>
             </div>
 
-            <div class="column is-6">
+            <div class="column is-3">
               <div class="field">
                 <label class="label" for="fontSize">{{ $t('fontSize') }}</label>
                 <div class="control">
@@ -69,7 +98,7 @@
               </div>
             </div>
 
-            <div class="column is-6">
+            <div class="column is-3">
               <div class="field">
                 <label class="label" for="opacity">{{ $t('opacity') }}</label>
                 <div class="control">
@@ -109,7 +138,7 @@
               </div>
             </div>
 
-            <div class="column is-12">
+            <div class="column is-3">
               <div class="field">
                 <label class="label" for="color">{{ $t('textColor') }}</label>
                 <div class="control">
@@ -123,39 +152,6 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="has-text-centered mb-5">
-          <div class="box" style="display: inline-block">
-            <canvas ref="canvas" />
-          </div>
-        </div>
-
-        <div class="field is-grouped is-grouped-centered">
-          <div class="control">
-            <button
-              class="button is-success is-large"
-              :disabled="!isImageLoaded"
-              @click="downloadImage"
-            >
-              <span class="icon">
-                <i class="fas fa-download" />
-              </span>
-              <span>{{ $t('download') }}</span>
-            </button>
-          </div>
-          <div class="control">
-            <button
-              class="button is-danger is-large"
-              :disabled="!isImageLoaded"
-              @click="resetImage"
-            >
-              <span class="icon">
-                <i class="fas fa-redo" />
-              </span>
-              <span>{{ $t('reset') }}</span>
-            </button>
           </div>
         </div>
       </div>
