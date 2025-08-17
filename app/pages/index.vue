@@ -370,12 +370,17 @@ const resetImage = () => {
   }
 }
 
-// useSeoMeta({
-//   title: 'My Amazing Site',
-//   ogTitle: 'My Amazing Site',
-//   description: 'This is my amazing site, let me tell you all about it.',
-//   ogDescription: 'This is my amazing site, let me tell you all about it.',
-//   ogImage: 'https://example.com/image.png',
-//   twitterCard: 'summary_large_image',
-// })
+useSeoMeta({
+  title: $t('title'),
+  ogTitle: $t('ogTitle'),
+  description: $t('description'),
+  ogDescription: $t('ogDescription'),
+  ogImage: '/watermark.png',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: $t('twitterTitle'),
+  twitterDescription: $t('twitterDescription'),
+  keywords: $t('keywords'),
+  robots: 'index, follow'
+})
 </script>
