@@ -1,84 +1,167 @@
 <template>
-  <div class="container">
-    <h1>{{ $t('mainHeading') }}</h1>
-    <h2>{{ $t('privacyMessage') }}</h2>
-
-    <div class="upload-section">
-      <input
-        ref="imageInput"
-        type="file"
-        accept="image/*"
-        @change="handleImageUpload"
-      />
-      <label for="imageInput" class="upload-btn">{{ $t('choosePhoto') }}</label>
-    </div>
-
-    <div class="watermark-controls">
-      <div class="control-group">
-        <label for="watermarkText">{{ $t('watermarkText') }}</label>
-        <input
-          id="watermarkText"
-          v-model="watermarkText"
-          type="text"
-          :placeholder="$t('watermarkPlaceholder')"
-        />
+  <div>
+    <section class="hero is-primary is-medium">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title is-2">{{ $t('mainHeading') }}</h1>
+          <h2 class="subtitle is-4">{{ $t('privacyMessage') }}</h2>
+        </div>
       </div>
+    </section>
 
-      <div class="control-group">
-        <label for="fontSize">{{ $t('fontSize') }}</label>
-        <input
-          id="fontSize"
-          v-model="fontSize"
-          type="range"
-          min="10"
-          max="100"
-        />
-        <span>{{ fontSize }}px</span>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="field">
+              <div class="file is-boxed is-large has-name is-centered">
+                <label class="file-label">
+                  <input
+                    ref="imageInput"
+                    class="file-input"
+                    type="file"
+                    accept="image/*"
+                    @change="handleImageUpload"
+                  />
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload" />
+                    </span>
+                    <span class="file-label">{{ $t('choosePhoto') }}</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="columns is-multiline">
+            <div class="column is-6">
+              <div class="field">
+                <label class="label" for="watermarkText">{{
+                  $t('watermarkText')
+                }}</label>
+                <div class="control">
+                  <input
+                    id="watermarkText"
+                    v-model="watermarkText"
+                    class="input"
+                    type="text"
+                    :placeholder="$t('watermarkPlaceholder')"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <div class="field">
+                <label class="label" for="fontSize">{{ $t('fontSize') }}</label>
+                <div class="control">
+                  <input
+                    id="fontSize"
+                    v-model="fontSize"
+                    class="slider is-fullwidth"
+                    type="range"
+                    min="10"
+                    max="100"
+                  />
+                </div>
+                <p class="help">{{ fontSize }}px</p>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <div class="field">
+                <label class="label" for="opacity">{{ $t('opacity') }}</label>
+                <div class="control">
+                  <input
+                    id="opacity"
+                    v-model="opacity"
+                    class="slider is-fullwidth"
+                    type="range"
+                    min="0.1"
+                    max="1"
+                    step="0.1"
+                  />
+                </div>
+                <p class="help">{{ opacity }}</p>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <div class="field">
+                <label class="label" for="position">{{ $t('position') }}</label>
+                <div class="control">
+                  <div class="select is-fullwidth">
+                    <select id="position" v-model="position">
+                      <option value="center">{{ $t('center') }}</option>
+                      <option value="top-left">{{ $t('topLeft') }}</option>
+                      <option value="top-right">{{ $t('topRight') }}</option>
+                      <option value="bottom-left">
+                        {{ $t('bottomLeft') }}
+                      </option>
+                      <option value="bottom-right">
+                        {{ $t('bottomRight') }}
+                      </option>
+                      <option value="diagonal">{{ $t('diagonal') }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-12">
+              <div class="field">
+                <label class="label" for="color">{{ $t('textColor') }}</label>
+                <div class="control">
+                  <input
+                    id="color"
+                    v-model="color"
+                    class="input"
+                    type="color"
+                    style="height: 3rem"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="has-text-centered mb-5">
+          <div class="box" style="display: inline-block">
+            <canvas ref="canvas" />
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-centered">
+          <div class="control">
+            <button
+              class="button is-success is-large"
+              :disabled="!isImageLoaded"
+              @click="downloadImage"
+            >
+              <span class="icon">
+                <i class="fas fa-download" />
+              </span>
+              <span>{{ $t('download') }}</span>
+            </button>
+          </div>
+          <div class="control">
+            <button
+              class="button is-danger is-large"
+              :disabled="!isImageLoaded"
+              @click="resetImage"
+            >
+              <span class="icon">
+                <i class="fas fa-redo" />
+              </span>
+              <span>{{ $t('reset') }}</span>
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div class="control-group">
-        <label for="opacity">{{ $t('opacity') }}</label>
-        <input
-          id="opacity"
-          v-model="opacity"
-          type="range"
-          min="0.1"
-          max="1"
-          step="0.1"
-        />
-        <span>{{ opacity }}</span>
-      </div>
-
-      <div class="control-group">
-        <label for="position">{{ $t('position') }}</label>
-        <select id="position" v-model="position">
-          <option value="center">{{ $t('center') }}</option>
-          <option value="top-left">{{ $t('topLeft') }}</option>
-          <option value="top-right">{{ $t('topRight') }}</option>
-          <option value="bottom-left">{{ $t('bottomLeft') }}</option>
-          <option value="bottom-right">{{ $t('bottomRight') }}</option>
-          <option value="diagonal">{{ $t('diagonal') }}</option>
-        </select>
-      </div>
-
-      <div class="control-group">
-        <label for="color">{{ $t('textColor') }}</label>
-        <input id="color" v-model="color" type="color" />
-      </div>
-    </div>
-
-    <div class="canvas-section">
-      <canvas ref="canvas" />
-    </div>
-
-    <div class="action-buttons">
-      <button :disabled="!isImageLoaded" @click="downloadImage">
-        {{ $t('download') }}
-      </button>
-      <button :disabled="!isImageLoaded" @click="resetImage">
-        {{ $t('reset') }}
-      </button>
-    </div>
+    </section>
   </div>
 </template>
 

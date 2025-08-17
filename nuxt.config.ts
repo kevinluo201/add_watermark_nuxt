@@ -5,7 +5,17 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
   app: {
     head: {
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css'
+        }
+      ],
       script: [
+        {
+          src: 'https://kit.fontawesome.com/4335c2f54b.js',
+          crossorigin: 'anonymous'
+        },
         {
           src: 'https://www.googletagmanager.com/gtag/js?id=G-XLRM21CEWV',
           async: true
