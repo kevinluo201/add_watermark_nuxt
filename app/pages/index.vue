@@ -12,7 +12,7 @@
         <div class="columns is-centered">
           <div class="column is-8">
             <div class="field">
-              <div class="file is-boxed is-large has-name is-centered">
+              <div class="file is-boxed is-medium has-name is-centered">
                 <label class="file-label">
                   <input
                     ref="imageInput"
@@ -91,7 +91,7 @@
                     class="slider is-fullwidth"
                     type="range"
                     min="10"
-                    max="100"
+                    max="150"
                   />
                 </div>
                 <p class="help">{{ fontSize }}px</p>
@@ -168,10 +168,10 @@ const isImageLoaded = ref(false)
 
 // Form state
 const watermarkText = ref('')
-const fontSize = ref(24)
-const opacity = ref(0.5)
+const fontSize = ref(72)
+const opacity = ref(0.75)
 const position = ref('center')
-const color = ref('#ffffff')
+const color = ref('#dc6969')
 
 const initializeCanvas = () => {
   if (canvas.value) {
