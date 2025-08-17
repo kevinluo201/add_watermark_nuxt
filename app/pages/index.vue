@@ -83,8 +83,9 @@
 </template>
 
 <script setup lang="ts">
-const canvas = ref(null)
-const ctx = ref(null)
+const canvas = useTemplateRef('canvas')
+const imageInput = useTemplateRef('imageInput')
+const ctx = ref<CanvasRenderingContext2D | null>(null)
 const originalImage = ref(null)
 const isImageLoaded = ref(false)
 
@@ -277,9 +278,8 @@ onMounted(() => {
 const resetImage = () => {
   reset()
   // Clear file input
-  const fileInput = document.querySelector('input[type="file"]')
-  if (fileInput) {
-    fileInput.value = ''
+  if (imageInput.value) {
+    imageInput.value.value = ''
   }
 }
 
