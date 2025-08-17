@@ -13,7 +13,7 @@
     <div class="content has-text-centered">
       <p>
         <strong>addwatermark.online</strong> by
-        <a href="https://www.linkedin.com/in/kevinluo201/">Kevin Luo</a>.
+        <a href="https://www.linkedin.com/in/kevinluo201/">Kevin Luo</a>
       </p>
     </div>
   </footer>
