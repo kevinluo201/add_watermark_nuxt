@@ -1,0 +1,38 @@
+# Hidden folders and files
+.*
+!.output
+
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+.nuxt/
+.nitro/
+
+# Development files
+*.log
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache directories
+.cache/
+.temp/
+
+# Environment files (keep local examples)
+.env
+.env.local
+.env.*.local
+
+# OS generated files
+Thumbs.db
