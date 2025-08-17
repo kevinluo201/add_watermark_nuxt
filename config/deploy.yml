@@ -24,6 +24,10 @@ proxy:
     - addwatermark.online
   # Proxy connects to your container on port 80 by default.
   app_port: 3000
+  healthcheck:
+    interval: 3
+    path: /api/up
+    timeout: 3
 
 # Credentials for your image host.
 registry:
