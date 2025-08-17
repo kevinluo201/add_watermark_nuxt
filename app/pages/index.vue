@@ -86,7 +86,7 @@
 const canvas = useTemplateRef('canvas')
 const imageInput = useTemplateRef('imageInput')
 const ctx = ref<CanvasRenderingContext2D | null>(null)
-const originalImage = ref(null)
+const originalImage = ref<HTMLImageElement | null>(null)
 const isImageLoaded = ref(false)
 
 // Form state
