@@ -169,7 +169,7 @@ const isImageLoaded = ref(false)
 // Form state
 const watermarkText = ref('')
 const fontSize = ref(72)
-const opacity = ref(0.75)
+const opacity = ref(0.5)
 const position = ref('center')
 const color = ref('#dc6969')
 
@@ -300,13 +300,23 @@ const drawDiagonalWatermark = (text, fSize) => {
   ctx.value.rotate((-45 * Math.PI) / 180)
   ctx.value.textAlign = 'center'
 
-  const spacing = fSize * 3
-  const numRepeats = Math.ceil(Math.max(width, height) / spacing) + 2
+  // Calculate text dimensions for proper spacing
+  const textMetrics = ctx.value.measureText(text)
+  const textWidth = textMetrics.width
+  const textHeight = fSize
 
-  for (let i = -numRepeats; i <= numRepeats; i++) {
-    for (let j = -numRepeats; j <= numRepeats; j++) {
-      const x = i * spacing * 2
-      const y = j * spacing
+  // Use text dimensions plus padding for spacing
+  const xSpacing = textWidth + fSize * 1.5
+  const ySpacing = textHeight + fSize * 1.0
+
+  const diagonal = Math.sqrt(width * width + height * height)
+  const numRepeatsX = Math.ceil(diagonal / xSpacing) + 1
+  const numRepeatsY = Math.ceil(diagonal / ySpacing) + 1
+
+  for (let i = -numRepeatsX; i <= numRepeatsX; i++) {
+    for (let j = -numRepeatsY; j <= numRepeatsY; j++) {
+      const x = i * xSpacing
+      const y = j * ySpacing
       ctx.value.strokeText(text, x, y)
       ctx.value.fillText(text, x, y)
     }
