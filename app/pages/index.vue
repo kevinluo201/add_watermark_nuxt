@@ -1,11 +1,9 @@
 <template>
   <div>
-    <section class="hero is-primary is-medium">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title is-2">{{ $t('mainHeading') }}</h1>
-          <h2 class="subtitle is-4">{{ $t('privacyMessage') }}</h2>
-        </div>
+    <section class="hero is-light is-small">
+      <div class="hero-body has-text-centered">
+        <p class="title">{{ $t('mainHeading') }}</p>
+        <p class="subtitle">{{ $t('privacyMessage') }}</p>
       </div>
     </section>
 

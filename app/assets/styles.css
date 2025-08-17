@@ -1,6 +1,5 @@
-/* Custom gradient background */
+/* Clean white background */
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
 }
 
@@ -8,12 +7,14 @@ body {
 canvas {
   max-width: 100%;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* Hero section customization */
-.hero.is-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Hero section - light theme */
+.hero.is-light {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
 }
 
 /* Slider styling for range inputs */
@@ -38,7 +39,7 @@ canvas {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #667eea;
+  background: #3b82f6;
   cursor: pointer;
 }
 
@@ -46,7 +47,7 @@ canvas {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #667eea;
+  background: #3b82f6;
   cursor: pointer;
   border: none;
 }
