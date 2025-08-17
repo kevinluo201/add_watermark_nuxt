@@ -2,5 +2,14 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
-  // Your custom configs here
+  {
+    rules: {
+      'prettier/prettier': 'error'
+    }
+  },
+  {
+    plugins: {
+      prettier: (await import('eslint-plugin-prettier')).default
+    }
+  }
 )

@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build outputs
+.nuxt/
+.output/
+dist/
+build/
+
+# Generated files
+.nitro/
+.cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Static assets that shouldn't be formatted
+public/
+static/
+
+# Config files that might have specific formatting
+package-lock.json
+yarn.lock
