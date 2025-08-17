@@ -30,7 +30,6 @@ export default defineNuxtConfig({
       { code: 'fr', name: 'Français', file: 'fr.json' },
       { code: 'zh-TW', name: '繁體中文', file: 'zh-TW.json' }
     ],
-    // langDir: 'locales',
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false
   }
