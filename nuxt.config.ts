@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n'],
   app: {
     head: {
       link: [
@@ -16,20 +16,22 @@ export default defineNuxtConfig({
           src: 'https://kit.fontawesome.com/4335c2f54b.js',
           crossorigin: 'anonymous'
         },
-        ...(process.env.NODE_ENV === 'production' ? [
-          {
-            src: 'https://www.googletagmanager.com/gtag/js?id=G-XLRM21CEWV',
-            async: true
-          },
-          {
-            innerHTML: `
+        ...(process.env.NODE_ENV === 'production'
+          ? [
+              {
+                src: 'https://www.googletagmanager.com/gtag/js?id=G-XLRM21CEWV',
+                async: true
+              },
+              {
+                innerHTML: `
               window.dataLayer = window.dataLayer || [];
               function gtag() { dataLayer.push(arguments); }
               gtag('js', new Date());
               gtag('config', 'G-XLRM21CEWV');
             `
-          }
-        ] : [])
+              }
+            ]
+          : [])
       ]
     }
   },
