@@ -19,6 +19,11 @@ export default defineNuxtConfig({
         ...(process.env.NODE_ENV === 'production'
           ? [
               {
+                src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8791642317068591',
+                async: true,
+                crossorigin: 'anonymous'
+              },
+              {
                 src: 'https://www.googletagmanager.com/gtag/js?id=G-XLRM21CEWV',
                 async: true
               },
