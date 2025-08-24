@@ -2,7 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n', '@nuxtjs/sitemap'],
+  site: {
+    url: 'https://addwatermark.online'
+  },
   app: {
     head: {
       link: [
@@ -96,5 +99,6 @@ export default defineNuxtConfig({
     ],
     strategy: 'prefix_except_default',
     detectBrowserLanguage: false
-  }
+  },
+  sitemap: true
 })
