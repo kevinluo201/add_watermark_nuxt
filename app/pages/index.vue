@@ -275,7 +275,34 @@
 </template>
 
 <script setup lang="ts">
+/// <reference types="webmcp-types" />
+
 type MosaicType = 'pixelate' | 'solid'
+type WatermarkPosition =
+  | 'center'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'diagonal'
+
+type WebMcpTextWatermarkInput = {
+  text: unknown
+  fontSize?: unknown
+  opacity?: unknown
+  color?: unknown
+  position?: unknown
+}
+
+type WebMcpMosaicInput = {
+  type?: unknown
+  color?: unknown
+  blockSize?: unknown
+  x?: unknown
+  y?: unknown
+  width?: unknown
+  height?: unknown
+}
 
 interface MosaicRegion {
   id: number
@@ -316,6 +343,7 @@ const isImageLoaded = ref(false)
 let sourceCanvas: HTMLCanvasElement | null = null
 let interaction: OverlayInteraction | null = null
 let nextMosaicId = 1
+let webMcpToolsController: AbortController | null = null
 
 // Form state
 const watermarkText = ref('')
@@ -329,7 +357,10 @@ const mosaicRegions = ref<MosaicRegion[]>([])
 const selectedRegionId = ref<number | null>(null)
 
 const selectedRegion = computed<MosaicRegion | null>(() => {
-  return mosaicRegions.value.find(region => region.id === selectedRegionId.value) || null
+  return (
+    mosaicRegions.value.find(region => region.id === selectedRegionId.value) ||
+    null
+  )
 })
 
 const mosaicType = computed<MosaicType>({
@@ -590,7 +621,12 @@ const getNormalizedPoint = (event: PointerEvent) => {
 const findRegionAt = (nx: number, ny: number) => {
   for (let i = mosaicRegions.value.length - 1; i >= 0; i--) {
     const region = mosaicRegions.value[i]
-    if (nx >= region.x && nx <= region.x + region.w && ny >= region.y && ny <= region.y + region.h) {
+    if (
+      nx >= region.x &&
+      nx <= region.x + region.w &&
+      ny >= region.y &&
+      ny <= region.y + region.h
+    ) {
       return region.id
     }
   }
@@ -608,7 +644,11 @@ const hitTestHandle = (
 
   for (let i = mosaicRegions.value.length - 1; i >= 0; i--) {
     const region = mosaicRegions.value[i]
-    const handles: Array<{ handle: 'nw' | 'ne' | 'sw' | 'se'; x: number; y: number }> = [
+    const handles: Array<{
+      handle: 'nw' | 'ne' | 'sw' | 'se'
+      x: number
+      y: number
+    }> = [
       { handle: 'nw', x: region.x, y: region.y },
       { handle: 'ne', x: region.x + region.w, y: region.y },
       { handle: 'sw', x: region.x, y: region.y + region.h },
@@ -756,8 +796,14 @@ const onOverlayPointerMove = (event: PointerEvent) => {
   }
 
   if (interaction.mode === 'move') {
-    region.x = Math.min(Math.max(interaction.origX + (nx - interaction.startNx), 0), 1 - region.w)
-    region.y = Math.min(Math.max(interaction.origY + (ny - interaction.startNy), 0), 1 - region.h)
+    region.x = Math.min(
+      Math.max(interaction.origX + (nx - interaction.startNx), 0),
+      1 - region.w
+    )
+    region.y = Math.min(
+      Math.max(interaction.origY + (ny - interaction.startNy), 0),
+      1 - region.h
+    )
   } else {
     const { orig, handle } = interaction
     const dx = nx - interaction.startNx
@@ -833,7 +879,9 @@ const addMosaicRegion = () => {
 const removeSelectedRegion = () => {
   if (selectedRegionId.value === null) return
 
-  mosaicRegions.value = mosaicRegions.value.filter(r => r.id !== selectedRegionId.value)
+  mosaicRegions.value = mosaicRegions.value.filter(
+    r => r.id !== selectedRegionId.value
+  )
   selectedRegionId.value = null
   renderCanvas()
   drawOverlay()
@@ -855,6 +903,238 @@ const downloadImage = () => {
   link.click()
 }
 
+const isNumberInRange = (value: unknown, min: number, max: number) => {
+  return (
+    typeof value === 'number' &&
+    Number.isFinite(value) &&
+    value >= min &&
+    value <= max
+  )
+}
+
+const registerWebMcpTools = async () => {
+  // WebMCP is an origin-trial API. Browsers outside the trial do not expose
+  // modelContext, so the regular editor continues to work without these tools.
+  const modelContext = document.modelContext
+  if (!modelContext) return
+
+  const controller = new AbortController()
+  webMcpToolsController = controller
+
+  try {
+    await Promise.all([
+      modelContext.registerTool(
+        {
+          name: 'focus_image_upload',
+          title: 'Focus image upload',
+          description:
+            'Focuses the Choose ID Photo upload control so the user can select an image. For browser security, this tool cannot select or upload a file itself.',
+          inputSchema: {
+            type: 'object',
+            properties: {},
+            additionalProperties: false
+          },
+          execute: async () => {
+            if (!imageInput.value) {
+              return 'The image upload control is not available yet.'
+            }
+
+            imageInput.value.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            })
+            imageInput.value.focus()
+            return 'The image upload control is focused. The user must choose the image file.'
+          }
+        },
+        { signal: controller.signal }
+      ),
+      modelContext.registerTool(
+        {
+          name: 'set_text_watermark',
+          title: 'Set text watermark',
+          description:
+            'Sets the text watermark and, optionally, its font size, opacity, color, and placement. The settings apply to the current image or the next image the user uploads.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              text: { type: 'string', description: 'The watermark text.' },
+              fontSize: { type: 'number', minimum: 10, maximum: 150 },
+              opacity: { type: 'number', minimum: 0.1, maximum: 1 },
+              color: { type: 'string', pattern: '^#[0-9a-fA-F]{6}$' },
+              position: {
+                type: 'string',
+                enum: [
+                  'center',
+                  'top-left',
+                  'top-right',
+                  'bottom-left',
+                  'bottom-right',
+                  'diagonal'
+                ]
+              }
+            },
+            required: ['text'],
+            additionalProperties: false
+          },
+          execute: async input => {
+            const {
+              text,
+              fontSize: requestedFontSize,
+              opacity: requestedOpacity,
+              color: requestedColor,
+              position: requestedPosition
+            } = input as WebMcpTextWatermarkInput
+
+            if (typeof text !== 'string') {
+              return 'A text watermark requires a text string.'
+            }
+
+            watermarkText.value = text
+            if (isNumberInRange(requestedFontSize, 10, 150)) {
+              fontSize.value = requestedFontSize
+            }
+            if (isNumberInRange(requestedOpacity, 0.1, 1)) {
+              opacity.value = requestedOpacity
+            }
+            if (
+              typeof requestedColor === 'string' &&
+              /^#[0-9a-fA-F]{6}$/.test(requestedColor)
+            ) {
+              color.value = requestedColor
+            }
+            if (
+              typeof requestedPosition === 'string' &&
+              [
+                'center',
+                'top-left',
+                'top-right',
+                'bottom-left',
+                'bottom-right',
+                'diagonal'
+              ].includes(requestedPosition)
+            ) {
+              position.value = requestedPosition as WatermarkPosition
+            }
+
+            await nextTick()
+            return isImageLoaded.value
+              ? 'The text watermark has been applied to the current image.'
+              : 'The text watermark has been configured and will apply when the user uploads an image.'
+          }
+        },
+        { signal: controller.signal }
+      ),
+      modelContext.registerTool(
+        {
+          name: 'add_mosaic_region',
+          title: 'Add mosaic privacy mask',
+          description:
+            'Adds a rectangular privacy mask to the uploaded image. Choose a pixelated mosaic or a solid color and optionally provide normalized x, y, width, and height values between 0 and 1.',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              type: { type: 'string', enum: ['pixelate', 'solid'] },
+              color: { type: 'string', pattern: '^#[0-9a-fA-F]{6}$' },
+              blockSize: { type: 'number', minimum: 4, maximum: 64 },
+              x: { type: 'number', minimum: 0, maximum: 1 },
+              y: { type: 'number', minimum: 0, maximum: 1 },
+              width: { type: 'number', exclusiveMinimum: 0, maximum: 1 },
+              height: { type: 'number', exclusiveMinimum: 0, maximum: 1 }
+            },
+            additionalProperties: false
+          },
+          execute: async input => {
+            if (!canvas.value || !isImageLoaded.value) {
+              return 'The user must upload an image before a mosaic privacy mask can be added.'
+            }
+
+            const {
+              type: requestedType,
+              color: requestedColor,
+              blockSize: requestedBlockSize,
+              x: requestedX,
+              y: requestedY,
+              width: requestedWidth,
+              height: requestedHeight
+            } = input as WebMcpMosaicInput
+            const type: MosaicType =
+              requestedType === 'solid' ? 'solid' : 'pixelate'
+            const width = isNumberInRange(requestedWidth, 0.001, 1)
+              ? requestedWidth
+              : 0.3
+            const height = isNumberInRange(requestedHeight, 0.001, 1)
+              ? requestedHeight
+              : 0.3
+            const x = isNumberInRange(requestedX, 0, 1)
+              ? requestedX
+              : (1 - width) / 2
+            const y = isNumberInRange(requestedY, 0, 1)
+              ? requestedY
+              : (1 - height) / 2
+            const region: MosaicRegion = {
+              id: nextMosaicId++,
+              x,
+              y,
+              w: width,
+              h: height,
+              type,
+              color:
+                typeof requestedColor === 'string' &&
+                /^#[0-9a-fA-F]{6}$/.test(requestedColor)
+                  ? requestedColor
+                  : '#000000',
+              blockSize: isNumberInRange(requestedBlockSize, 4, 64)
+                ? requestedBlockSize
+                : 16
+            }
+
+            clampRegion(region)
+            if (region.w === 0 || region.h === 0) {
+              return 'The mosaic privacy mask must occupy a visible area of the image.'
+            }
+
+            mosaicRegions.value.push(region)
+            selectedRegionId.value = region.id
+            renderCanvas()
+            drawOverlay()
+            return `A ${type} mosaic privacy mask has been added to the image.`
+          }
+        },
+        { signal: controller.signal }
+      ),
+      modelContext.registerTool(
+        {
+          name: 'download_watermarked_image',
+          title: 'Download watermarked image',
+          description:
+            'Downloads the current image, including its text watermark and mosaic privacy masks, as a PNG file.',
+          inputSchema: {
+            type: 'object',
+            properties: {},
+            additionalProperties: false
+          },
+          execute: async () => {
+            if (!canvas.value || !isImageLoaded.value) {
+              return 'The user must upload an image before it can be downloaded.'
+            }
+
+            downloadImage()
+            return 'The watermarked PNG download has been started.'
+          }
+        },
+        { signal: controller.signal }
+      )
+    ])
+  } catch (error) {
+    controller.abort()
+    if (webMcpToolsController === controller) {
+      webMcpToolsController = null
+    }
+    console.warn('WebMCP tools could not be registered.', error)
+  }
+}
+
 const reset = () => {
   originalImage.value = null
   isImageLoaded.value = false
@@ -867,7 +1147,12 @@ const reset = () => {
     ctx.value.clearRect(0, 0, canvas.value.width, canvas.value.height)
   }
   if (overlayCanvas.value && overlayCtx.value) {
-    overlayCtx.value.clearRect(0, 0, overlayCanvas.value.width, overlayCanvas.value.height)
+    overlayCtx.value.clearRect(
+      0,
+      0,
+      overlayCanvas.value.width,
+      overlayCanvas.value.height
+    )
   }
 
   watermarkText.value = $t('defaultWatermark') || 'CONFIDENTIAL'
@@ -901,6 +1186,12 @@ watermarkText.value = $t('defaultWatermark') || 'CONFIDENTIAL'
 // Initialize canvas when component mounts
 onMounted(() => {
   initializeCanvas()
+  void registerWebMcpTools()
+})
+
+onUnmounted(() => {
+  webMcpToolsController?.abort()
+  webMcpToolsController = null
 })
 
 // Reset method for the button

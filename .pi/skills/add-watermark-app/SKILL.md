@@ -19,28 +19,32 @@ This is a **Nuxt.js v4** single-page application that processes images entirely 
 - **Layout:** Global layout with footer and language switcher in `app/app.vue`
 - **State:** Vue Composition API with `ref()` and `computed()` (no external state library)
 - **SEO:** `useSeoMeta` for dynamic meta tags; `@nuxtjs/sitemap` for sitemap generation
+- **WebMCP:** Experimental, origin-trial-only agent tools registered through `document.modelContext`; TypeScript typings come from the `webmcp-types` development dependency
 - **Analytics:** Google Analytics (G-XLRM21CEWV) and Google Ads (ca-pub-8791642317068591) injected in production only
 
 ## Key Files
 
-| File | Purpose |
-|------|---------|
-| `app/pages/index.vue` | Main UI, canvas logic, watermarking, mosaic regions, and download/reset |
-| `app/app.vue` | Root layout with language switcher and RTL support |
-| `app/assets/styles.css` | Custom styles for canvas, sliders, and responsive action buttons |
-| `nuxt.config.ts` | Nuxt config with i18n locales, site URL, Bulma/Font Awesome CDN links, and production analytics scripts |
-| `i18n/locales/*.json` | Translation files for all supported languages |
+| File                    | Purpose                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------- |
+| `app/pages/index.vue`   | Main UI, canvas logic, watermarking, mosaic regions, and download/reset                                 |
+| `app/app.vue`           | Root layout with language switcher and RTL support                                                      |
+| `app/assets/styles.css` | Custom styles for canvas, sliders, and responsive action buttons                                        |
+| `nuxt.config.ts`        | Nuxt config with i18n locales, site URL, Bulma/Font Awesome CDN links, and production analytics scripts |
+| `i18n/locales/*.json`   | Translation files for all supported languages                                                           |
 
 ## Core Features
 
 ### 1. Image Upload
+
 - File input accepts any image file (`image/*`)
 - Invalid file types show an alert via `$t('invalidFileError')`
 - Uploaded image is drawn to a canvas, scaled down if it exceeds 800×600px
 - A hidden `sourceCanvas` keeps a clean copy for pixelation sampling
 
 ### 2. Text Watermark
+
 Users can customize:
+
 - **Text:** Free-form input (default is `$t('defaultWatermark')`, usually "CONFIDENTIAL")
 - **Font size:** Range slider 10–150px
 - **Opacity:** Range slider 0.1–1.0
@@ -53,6 +57,7 @@ Users can customize:
 The watermark is rendered with both `strokeText` (thin outline) and `fillText` for readability. Stroke color auto-contrasts: black stroke on white text, white stroke on all other colors.
 
 ### 3. Mosaic / Pixelation Regions
+
 Users can add draggable, resizable rectangular regions on the image to hide sensitive areas:
 
 - **Add region:** Creates a default region centered on the image (~30% of the smaller dimension)
@@ -69,14 +74,29 @@ Users can add draggable, resizable rectangular regions on the image to hide sens
 The overlay uses a second transparent canvas (`overlayCanvas`) stacked on top of the main canvas. Pointer events (`pointerdown`, `pointermove`, `pointerup`, `pointercancel`) handle interaction, with `setPointerCapture` for smooth dragging.
 
 ### 4. Download
+
 - Generates a PNG from the main canvas (`canvas.toDataURL('image/png', 1.0)`)
 - Filename uses `$t('downloadFilename')` (default: `watermarked-id-photo.png`)
 
 ### 5. Reset
+
 - Clears the main canvas and overlay
 - Resets all watermark settings to defaults
 - Removes all mosaic regions
 - Clears the file input
+
+### 6. WebMCP Agent Tools (Experimental)
+
+When the browser exposes `document.modelContext` through Chrome's WebMCP origin trial, the app registers four tools. The feature is optional: browsers that do not support the API simply skip registration and retain the standard editor experience.
+
+| Tool                         | Purpose                                                                                                                                                             |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `focus_image_upload`         | Scrolls to and focuses the image-upload control. It cannot select a local file; browser security requires the user to do that.                                      |
+| `set_text_watermark`         | Sets text and optional font size, opacity, color, and placement. It can configure settings before an image is uploaded.                                             |
+| `add_mosaic_region`          | Adds a pixelated or solid-color privacy-mask rectangle to an uploaded image. Optional `x`, `y`, `width`, and `height` inputs use normalized 0–1 canvas coordinates. |
+| `download_watermarked_image` | Invokes the existing PNG download for the current canvas, including all text and mosaic edits.                                                                      |
+
+Registration lives in `app/pages/index.vue`, occurs only after mount, and uses an `AbortController` that unregisters the tools when the component unmounts. Keep the `document.modelContext` existence check: WebMCP is not available in standard browsers.
 
 ## Internationalization (i18n)
 
@@ -87,9 +107,11 @@ The overlay uses a second transparent canvas (`overlayCanvas`) stacked on top of
 - **Supported locales:** 50 languages including Arabic, Bengali, Bulgarian, Catalan, Simplified Chinese, Traditional Chinese, Croatian, Czech, Danish, Dutch, English, Estonian, Filipino, Finnish, French, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Kannada, Korean, Latvian, Lithuanian, Malay, Malayalam, Marathi, Norwegian, Polish, Portuguese, Punjabi, Romanian, Russian, Serbian, Slovak, Slovenian, Spanish (Spain), Spanish (Latin America), Swedish, Tamil, Telugu, Thai, Turkish, Ukrainian, Urdu, Vietnamese
 
 ### RTL Support
+
 The app supports right-to-left layouts for Arabic (`ar`), Hebrew (`he`), and Urdu (`ur`). The `#wrapper` element gets an `.rtl` class when one of these locales is active, which applies `direction: rtl`.
 
 ### Adding Translations
+
 1. Add new strings to `i18n/locales/en.json` first.
 2. Reference them in components with `$t('key')`.
 3. Mirror the new keys across all other locale files.
