@@ -25,5 +25,15 @@
   "bottomRight": "Oikea ala",
   "diagonal": "Vinosti",
   "invalidFileError": "Valitse kelvollinen kuvatiedosto",
-  "downloadFilename": "vesileimallinen-henkilollisyystodistuskuva.png"
+  "downloadFilename": "vesileimallinen-henkilollisyystodistuskuva.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

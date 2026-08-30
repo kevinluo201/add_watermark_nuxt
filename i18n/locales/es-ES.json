@@ -25,5 +25,15 @@
   "bottomRight": "Abajo derecha",
   "diagonal": "Diagonal",
   "invalidFileError": "Por favor, selecciona un archivo de imagen válido",
-  "downloadFilename": "foto-dni-con-marca-de-agua.png"
+  "downloadFilename": "foto-dni-con-marca-de-agua.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

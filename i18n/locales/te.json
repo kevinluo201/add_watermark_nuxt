@@ -25,5 +25,15 @@
   "bottomRight": "దిగువ కుడి",
   "diagonal": "వికర్ణ",
   "invalidFileError": "దయచేసి చెల్లుబాటు అయ్యే ఇమేజ్ ఫైల్‌ను ఎంచుకోండి",
-  "downloadFilename": "వాటర్‌మార్క్-తో-id-ఫోటో.png"
+  "downloadFilename": "వాటర్‌మార్క్-తో-id-ఫోటో.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

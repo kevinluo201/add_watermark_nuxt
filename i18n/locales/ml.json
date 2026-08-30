@@ -25,5 +25,15 @@
   "bottomRight": "താഴെ വലത്",
   "diagonal": "ഡയഗണൽ",
   "invalidFileError": "ദയവായി സാധുവായ ഇമേജ് ഫയൽ തിരഞ്ഞെടുക്കുക",
-  "downloadFilename": "വാട്ടർമാർക്ക്-ഉള്ള-ഐഡി-ഫോട്ടോ.png"
+  "downloadFilename": "വാട്ടർമാർക്ക്-ഉള്ള-ഐഡി-ഫോട്ടോ.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

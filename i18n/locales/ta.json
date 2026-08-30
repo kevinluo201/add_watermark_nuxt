@@ -25,5 +25,15 @@
   "bottomRight": "கீழ் வலது",
   "diagonal": "மூலைவிட்டம்",
   "invalidFileError": "தயவுசெய்து சரியான படக் கோப்பைத் தேர்ந்தெடுக்கவும்",
-  "downloadFilename": "வாட்டர்மார்க்-உடன்-அடையாள-புகைப்படம்.png"
+  "downloadFilename": "வாட்டர்மார்க்-உடன்-அடையாள-புகைப்படம்.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

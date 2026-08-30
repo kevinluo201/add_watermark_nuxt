@@ -25,5 +25,15 @@
   "bottomRight": "右下",
   "diagonal": "对角线",
   "invalidFileError": "请选择有效的图片文件",
-  "downloadFilename": "水印证件照.png"
+  "downloadFilename": "水印证件照.png",
+  "mosaicTitle": "马赛克／隐私遮挡",
+  "mosaicHint": "添加遮挡区域后，拖到想要遮挡的位置；拖动边角可调整大小。",
+  "addMosaicRegion": "添加遮挡区域",
+  "deleteSelectedRegion": "删除选中区域",
+  "clearAllRegions": "全部清除",
+  "mosaicType": "遮挡类型：",
+  "mosaicPixelate": "网格马赛克",
+  "mosaicSolid": "纯色遮挡",
+  "mosaicColor": "遮挡颜色：",
+  "mosaicBlockSize": "马赛克格子大小："
 }

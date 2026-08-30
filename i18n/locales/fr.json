@@ -25,5 +25,15 @@
   "bottomRight": "En Bas à Droite",
   "diagonal": "Diagonale",
   "invalidFileError": "Veuillez sélectionner un fichier image valide",
-  "downloadFilename": "photo-identite-filigrane.png"
+  "downloadFilename": "photo-identite-filigrane.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

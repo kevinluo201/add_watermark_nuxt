@@ -4,11 +4,30 @@ body {
 }
 
 /* Custom canvas styling */
-canvas {
+.canvas-wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.main-canvas {
+  display: block;
   max-width: 100%;
+  height: auto;
   border-radius: 10px;
   border: 1px solid #e9ecef;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.mosaic-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: none;
+  cursor: crosshair;
+  touch-action: none;
 }
 
 /* Hero section - light theme */

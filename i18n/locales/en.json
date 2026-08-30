@@ -25,5 +25,15 @@
   "bottomRight": "Bottom Right",
   "diagonal": "Diagonal",
   "invalidFileError": "Please select a valid image file",
-  "downloadFilename": "watermarked-id-photo.png"
+  "downloadFilename": "watermarked-id-photo.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

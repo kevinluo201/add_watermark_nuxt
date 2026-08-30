@@ -25,5 +25,15 @@
   "bottomRight": "أسفل اليمين",
   "diagonal": "قطري",
   "invalidFileError": "يرجى اختيار ملف صورة صالح",
-  "downloadFilename": "صورة-هوية-علامة-مائية.png"
+  "downloadFilename": "صورة-هوية-علامة-مائية.png",
+  "mosaicTitle": "Mosaic / Privacy Mask",
+  "mosaicHint": "Add a region and drag it over the part of the photo you want to hide. Drag the corners to resize it.",
+  "addMosaicRegion": "Add Mosaic Region",
+  "deleteSelectedRegion": "Delete Selected",
+  "clearAllRegions": "Clear All",
+  "mosaicType": "Mask Type:",
+  "mosaicPixelate": "Pixelated Mosaic",
+  "mosaicSolid": "Solid Color",
+  "mosaicColor": "Mask Color:",
+  "mosaicBlockSize": "Mosaic Block Size:"
 }

@@ -25,5 +25,15 @@
   "bottomRight": "右下",
   "diagonal": "對角線",
   "invalidFileError": "請選擇有效的圖片檔案",
-  "downloadFilename": "浮水印證件照.png"
+  "downloadFilename": "浮水印證件照.png",
+  "mosaicTitle": "馬賽克／隱私遮罩",
+  "mosaicHint": "新增遮罩區域後，拖曳到想遮蔽的位置；拖曳角落可調整大小。",
+  "addMosaicRegion": "新增遮罩區域",
+  "deleteSelectedRegion": "刪除選取區域",
+  "clearAllRegions": "清除全部",
+  "mosaicType": "遮罩類型：",
+  "mosaicPixelate": "格狀馬賽克",
+  "mosaicSolid": "單色遮罩",
+  "mosaicColor": "遮罩顏色：",
+  "mosaicBlockSize": "馬賽克格子大小："
 }
