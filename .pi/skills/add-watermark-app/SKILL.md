@@ -18,9 +18,9 @@ This is a **Nuxt.js v4** single-page application that processes images entirely 
 - **Routing:** Single page app; all content lives in `app/pages/index.vue`
 - **Layout:** Global layout with footer and language switcher in `app/app.vue`
 - **State:** Vue Composition API with `ref()` and `computed()` (no external state library)
-- **SEO:** `useSeoMeta` for dynamic meta tags; `@nuxtjs/sitemap` for sitemap generation
+- **SEO:** Dynamic meta tags with `useSeoMeta`, Schema.org JSON-LD structured data (`WebApplication`, `HowTo`, `FAQPage`), automated `<link rel="canonical">` and 50-locale `<link rel="alternate" hreflang="...">` via `@nuxtjs/i18n` with `baseUrl`
 - **WebMCP:** Experimental, origin-trial-only agent tools registered through `document.modelContext`; TypeScript typings come from the `webmcp-types` development dependency
-- **Analytics:** Google Analytics (G-XLRM21CEWV) and Google Ads (ca-pub-8791642317068591) injected in production only
+- **Analytics:** Google Analytics (G-XLRM21CEWV) with custom conversion events (`upload_image`, `apply_preset`, `add_mosaic`, `download_image`) and Google Ads (ca-pub-8791642317068591) in production
 
 ## Key Files
 
@@ -41,11 +41,12 @@ This is a **Nuxt.js v4** single-page application that processes images entirely 
 - Uploaded image is drawn to a canvas, scaled down if it exceeds 800×600px
 - A hidden `sourceCanvas` keeps a clean copy for pixelation sampling
 
-### 2. Text Watermark
+### 2. Text Watermark & Quick Presets
 
 Users can customize:
 
-- **Text:** Free-form input (default is `$t('defaultWatermark')`, usually "CONFIDENTIAL")
+- **Quick Presets:** One-click preset buttons for common ID protection phrases (e.g., "僅供身分驗證使用，他用無效", "FOR VERIFICATION ONLY", "SOLO PARA VERIFICACIÓN")
+- **Text:** Free-form input (default is `$t('defaultWatermark')`, tailored to document protection)
 - **Font size:** Range slider 10–150px
 - **Opacity:** Range slider 0.1–1.0
 - **Color:** Native HTML color picker
@@ -73,19 +74,25 @@ Users can add draggable, resizable rectangular regions on the image to hide sens
 
 The overlay uses a second transparent canvas (`overlayCanvas`) stacked on top of the main canvas. Pointer events (`pointerdown`, `pointermove`, `pointerup`, `pointercancel`) handle interaction, with `setPointerCapture` for smooth dragging.
 
-### 4. Download
+### 4. Rich SEO Content Sections
+
+- **How-To 3 Steps:** Step-by-step guidance for protecting ID cards and passport copies.
+- **FAQ Accordion:** Answers to top search questions on document watermarking security, privacy guarantees, and recommended phrasing.
+
+### 5. Download
 
 - Generates a PNG from the main canvas (`canvas.toDataURL('image/png', 1.0)`)
 - Filename uses `$t('downloadFilename')` (default: `watermarked-id-photo.png`)
+- Triggers GA4 `download_image` conversion event
 
-### 5. Reset
+### 6. Reset
 
 - Clears the main canvas and overlay
 - Resets all watermark settings to defaults
 - Removes all mosaic regions
 - Clears the file input
 
-### 6. WebMCP Agent Tools (Experimental)
+### 7. WebMCP Agent Tools (Experimental)
 
 When the browser exposes `document.modelContext` through Chrome's WebMCP origin trial, the app registers four tools. The feature is optional: browsers that do not support the API simply skip registration and retain the standard editor experience.
 

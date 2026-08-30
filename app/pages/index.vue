@@ -89,6 +89,42 @@
                   />
                 </div>
               </div>
+
+              <div class="field mt-3">
+                <label class="label is-small has-text-grey">{{
+                  $t('quickPresetsTitle')
+                }}</label>
+                <div class="buttons are-small">
+                  <button
+                    type="button"
+                    class="button is-info is-light is-rounded preset-btn"
+                    @click="applyPreset($t('preset1'))"
+                  >
+                    {{ $t('preset1') }}
+                  </button>
+                  <button
+                    type="button"
+                    class="button is-info is-light is-rounded preset-btn"
+                    @click="applyPreset($t('preset2'))"
+                  >
+                    {{ $t('preset2') }}
+                  </button>
+                  <button
+                    type="button"
+                    class="button is-info is-light is-rounded preset-btn"
+                    @click="applyPreset($t('preset3'))"
+                  >
+                    {{ $t('preset3') }}
+                  </button>
+                  <button
+                    type="button"
+                    class="button is-info is-light is-rounded preset-btn"
+                    @click="applyPreset($t('preset4'))"
+                  >
+                    {{ $t('preset4') }}
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div class="column is-3">
@@ -269,6 +305,106 @@
             </div>
           </div>
         </div>
+
+        <!-- SEO How-To Section -->
+        <div class="box content-box mb-5 p-5">
+          <h2 class="title is-4 has-text-centered mb-5">
+            {{ $t('howToTitle') }}
+          </h2>
+          <div class="columns is-multiline">
+            <div class="column is-4">
+              <div
+                class="box has-text-centered has-background-light"
+                style="height: 100%"
+              >
+                <span class="icon is-large has-text-info mb-2">
+                  <i class="fas fa-id-card fa-2x"></i>
+                </span>
+                <h3 class="title is-5 mb-2">{{ $t('howToStep1Title') }}</h3>
+                <p class="is-size-6 has-text-grey-dark">
+                  {{ $t('howToStep1Desc') }}
+                </p>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div
+                class="box has-text-centered has-background-light"
+                style="height: 100%"
+              >
+                <span class="icon is-large has-text-info mb-2">
+                  <i class="fas fa-shield-alt fa-2x"></i>
+                </span>
+                <h3 class="title is-5 mb-2">{{ $t('howToStep2Title') }}</h3>
+                <p class="is-size-6 has-text-grey-dark">
+                  {{ $t('howToStep2Desc') }}
+                </p>
+              </div>
+            </div>
+            <div class="column is-4">
+              <div
+                class="box has-text-centered has-background-light"
+                style="height: 100%"
+              >
+                <span class="icon is-large has-text-info mb-2">
+                  <i class="fas fa-download fa-2x"></i>
+                </span>
+                <h3 class="title is-5 mb-2">{{ $t('howToStep3Title') }}</h3>
+                <p class="is-size-6 has-text-grey-dark">
+                  {{ $t('howToStep3Desc') }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEO FAQ Section -->
+        <div class="box content-box p-5">
+          <h2 class="title is-4 has-text-centered mb-5">
+            {{ $t('faqTitle') }}
+          </h2>
+          <div class="faq-list">
+            <details class="faq-item mb-3 p-4">
+              <summary class="faq-question is-size-6 has-text-weight-bold">
+                {{ $t('faq1Q') }}
+              </summary>
+              <p class="faq-answer mt-3 is-size-6 has-text-grey-dark">
+                {{ $t('faq1A') }}
+              </p>
+            </details>
+            <details class="faq-item mb-3 p-4">
+              <summary class="faq-question is-size-6 has-text-weight-bold">
+                {{ $t('faq2Q') }}
+              </summary>
+              <p class="faq-answer mt-3 is-size-6 has-text-grey-dark">
+                {{ $t('faq2A') }}
+              </p>
+            </details>
+            <details class="faq-item mb-3 p-4">
+              <summary class="faq-question is-size-6 has-text-weight-bold">
+                {{ $t('faq3Q') }}
+              </summary>
+              <p class="faq-answer mt-3 is-size-6 has-text-grey-dark">
+                {{ $t('faq3A') }}
+              </p>
+            </details>
+            <details class="faq-item mb-3 p-4">
+              <summary class="faq-question is-size-6 has-text-weight-bold">
+                {{ $t('faq4Q') }}
+              </summary>
+              <p class="faq-answer mt-3 is-size-6 has-text-grey-dark">
+                {{ $t('faq4A') }}
+              </p>
+            </details>
+            <details class="faq-item mb-3 p-4">
+              <summary class="faq-question is-size-6 has-text-weight-bold">
+                {{ $t('faq5Q') }}
+              </summary>
+              <p class="faq-answer mt-3 is-size-6 has-text-grey-dark">
+                {{ $t('faq5A') }}
+              </p>
+            </details>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -399,6 +535,20 @@ const initializeCanvas = () => {
   }
 }
 
+const trackEvent = (
+  eventName: string,
+  params: Record<string, unknown> = {}
+) => {
+  if (typeof window !== 'undefined' && (window as any).gtag) {
+    ;(window as any).gtag('event', eventName, params)
+  }
+}
+
+const applyPreset = (presetText: string) => {
+  watermarkText.value = presetText
+  trackEvent('apply_preset', { preset: presetText })
+}
+
 const handleImageUpload = event => {
   const file = event.target.files[0]
   if (!file) return
@@ -417,6 +567,7 @@ const handleImageUpload = event => {
       renderCanvas()
       isImageLoaded.value = true
       drawOverlay()
+      trackEvent('upload_image', { file_type: file.type })
     }
     img.src = e.target.result
   }
@@ -874,6 +1025,7 @@ const addMosaicRegion = () => {
   selectedRegionId.value = nextMosaicId - 1
   renderCanvas()
   drawOverlay()
+  trackEvent('add_mosaic', { type: mosaicType.value || 'pixelate' })
 }
 
 const removeSelectedRegion = () => {
@@ -901,6 +1053,10 @@ const downloadImage = () => {
   link.download = $t('downloadFilename') || 'watermarked-id-photo.png'
   link.href = canvas.value.toDataURL('image/png', 1.0)
   link.click()
+  trackEvent('download_image', {
+    has_mosaic: mosaicRegions.value.length > 0,
+    watermark_position: position.value
+  })
 }
 
 const isNumberInRange = (value: unknown, min: number, max: number) => {
@@ -1215,5 +1371,105 @@ useSeoMeta({
   twitterDescription: $t('twitterDescription'),
   keywords: $t('keywords'),
   robots: 'index, follow'
+})
+
+const structuredData = computed(() => {
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: $t('title'),
+      url: 'https://addwatermark.online',
+      applicationCategory: 'MultimediaApplication',
+      operatingSystem: 'All',
+      browserRequirements: 'Requires JavaScript. Requires HTML5 Canvas.',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD'
+      },
+      description: $t('description')
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: $t('howToTitle'),
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: $t('howToStep1Title'),
+          text: $t('howToStep1Desc'),
+          position: 1
+        },
+        {
+          '@type': 'HowToStep',
+          name: $t('howToStep2Title'),
+          text: $t('howToStep2Desc'),
+          position: 2
+        },
+        {
+          '@type': 'HowToStep',
+          name: $t('howToStep3Title'),
+          text: $t('howToStep3Desc'),
+          position: 3
+        }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: $t('faq1Q'),
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: $t('faq1A')
+          }
+        },
+        {
+          '@type': 'Question',
+          name: $t('faq2Q'),
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: $t('faq2A')
+          }
+        },
+        {
+          '@type': 'Question',
+          name: $t('faq3Q'),
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: $t('faq3A')
+          }
+        },
+        {
+          '@type': 'Question',
+          name: $t('faq4Q'),
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: $t('faq4A')
+          }
+        },
+        {
+          '@type': 'Question',
+          name: $t('faq5Q'),
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: $t('faq5A')
+          }
+        }
+      ]
+    }
+  ]
+})
+
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      children: computed(() => JSON.stringify(structuredData.value))
+    }
+  ]
 })
 </script>

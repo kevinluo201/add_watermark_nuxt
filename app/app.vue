@@ -55,6 +55,22 @@ const { locales, locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 
 const rtl = computed(() => ['ar', 'he', 'ur'].includes(locale.value))
+
+const i18nHead = useLocaleHead({
+  addDirAttribute: true,
+  addSeoAttributes: true
+})
+
+useHead({
+  htmlAttrs: {
+    lang: computed(() => i18nHead.value.htmlAttrs?.lang || locale.value),
+    dir: computed(
+      () => i18nHead.value.htmlAttrs?.dir || (rtl.value ? 'rtl' : 'ltr')
+    )
+  },
+  link: computed(() => i18nHead.value.link || []),
+  meta: computed(() => i18nHead.value.meta || [])
+})
 </script>
 
 <style>
