@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Kas see tasuta tööriist meeldib sulle?",
+  "supportMessage": "Kui addwatermark.online säästis sulle natuke aega, siis osta mulle kohvi — see on armas viis aitäh öelda. Iga lonks hoiab selle tasuta ja aitab mul seda paremaks teha. 💛",
+  "supportCta": "Osta mulle kohvi",
+  "supportScan": "Skänni ja toeta"
 }

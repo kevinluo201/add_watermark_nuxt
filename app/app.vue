@@ -1,6 +1,34 @@
 <template>
   <div id="wrapper" :class="{ rtl }">
     <NuxtPage />
+    <section class="section support-section">
+      <div class="container">
+        <div class="box support-box">
+          <p class="support-emoji">☕</p>
+          <h2 class="title is-4">{{ $t('supportHeading') }}</h2>
+          <p class="subtitle is-6">{{ $t('supportMessage') }}</p>
+          <a
+            class="button is-warning is-medium is-rounded"
+            href="https://buymeacoffee.com/kevinluo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="icon">☕</span>
+            <span>{{ $t('supportCta') }}</span>
+          </a>
+          <div class="mt-4">
+            <img
+              class="support-qr"
+              src="/buymeacoffee-qr.png"
+              alt="Buy me a coffee QR code for Kevin Luo"
+              width="140"
+              height="140"
+            />
+            <p class="help">{{ $t('supportScan') }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer class="footer">
       <div id="langs" class="buttons is-centered mb-4">
         <NuxtLink

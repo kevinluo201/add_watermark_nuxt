@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "ಈ ಉಚಿತ ಟೂಲ್ ಇಷ್ಟ ಆಯ್ತಾ?",
+  "supportMessage": "addwatermark.online ನಿಮ್ಮ ಸಮಯ ಸ್ವಲ್ಪ ಉಳಿಸಿದ್ರೆ, ನನಗೆ ಕಾಫಿ ಕೊಡಿಸಿ — ಧನ್ಯವಾದ ಹೇಳೋಕೆ ಅದೇ ಚೆನ್ನಾಗಿರುತ್ತೆ. ಪ್ರತಿ ಗುಟುಕು ಇದನ್ನ ಫ್ರೀ ಆಗಿ ಇಡೋಕೆ, ಇನ್ನೂ ಚೆನ್ನಾಗಿ ಮಾಡೋಕೆ ಸಹಾಯ ಮಾಡುತ್ತೆ. 💛",
+  "supportCta": "ನನಗೆ ಕಾಫಿ ಕೊಡಿಸಿ",
+  "supportScan": "ಸಪೋರ್ಟ್ ಮಾಡಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ"
 }

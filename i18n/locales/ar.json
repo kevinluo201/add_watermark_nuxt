@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "عجبك الموقع؟",
+  "supportMessage": "لو وفّرت اليوم دقيقة من وقتك، اشتريلي قهوة بقا — أحلى طريقة تقول شكرًا. كل رشفة بتخلي الموقع يفضل مجاني وأقدر أطوّره أكتر. 💛",
+  "supportCta": "اشتريلي قهوة",
+  "supportScan": "امسح الكود وادعمني"
 }

@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Gusto mo ba itong libreng tool?",
+  "supportMessage": "Kung nakatulong sa'yo ang addwatermark.online kahit sandali, ilibre mo 'ko ng kape — ang sweet na paraan para magpasalamat. Bawat higop, napapanatili itong libre at lalo pang napagaganda. 💛",
+  "supportCta": "Ilibre mo 'ko ng kape",
+  "supportScan": "I-scan para sumuporta"
 }

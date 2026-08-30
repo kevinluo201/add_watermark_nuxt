@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "এই ফ্রি টুলটা কি কাজে লাগছে?",
+  "supportMessage": "addwatermark.online যদি একটুও সময় বাঁচিয়ে থাকে, তাহলে আমাকে একটা কফি কিনে দাও — ধন্যবাদ জানানোর সবচেয়ে সুন্দর উপায়। প্রতি চুমুকেই এটা ফ্রি থাকবে আর আমিও আরও ভালো করতে পারব। 💛",
+  "supportCta": "আমাকে কফি কিনে দাও",
+  "supportScan": "সাপোর্ট করতে স্ক্যান করো"
 }

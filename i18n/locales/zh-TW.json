@@ -35,5 +35,9 @@
   "mosaicPixelate": "格狀馬賽克",
   "mosaicSolid": "單色遮罩",
   "mosaicColor": "遮罩顏色：",
-  "mosaicBlockSize": "馬賽克格子大小："
+  "mosaicBlockSize": "馬賽克格子大小：",
+  "supportHeading": "覺得這個免費工具好用嗎？",
+  "supportMessage": "如果 addwatermark.online 幫你省下了一點時間，請我喝杯咖啡吧，這是最暖心的感謝方式。每一口都能讓它繼續免費，也讓我把它做得更好。💛",
+  "supportCta": "請我喝杯咖啡",
+  "supportScan": "掃碼支持我"
 }

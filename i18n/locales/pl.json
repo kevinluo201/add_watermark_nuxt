@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Podoba ci się to darmowe narzędzie?",
+  "supportMessage": "Jak addwatermark.online zaoszczędziło ci chwilę, postaw mi kawę — to najfajniejszy sposób, żeby podziękować. Każdy łyk trzyma je za darmo i pomaga mi je ulepszać. 💛",
+  "supportCta": "Postaw mi kawę",
+  "supportScan": "Zeskanuj i wesprzyj"
 }

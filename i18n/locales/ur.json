@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "کیا یہ مفت ٹول پسند آیا؟",
+  "supportMessage": "اگر addwatermark.online نے آپ کا تھوڑا سا وقت بچایا ہے تو مجھے کافی پلا دیں — شکریہ کہنے کا اس سے پیارا طریقہ کیا ہوگا۔ ہر گھونٹ اسے مفت رکھنے اور مزید بہتر بنانے میں میری مدد کرتا ہے۔ 💛",
+  "supportCta": "مجھے کافی پلائیں",
+  "supportScan": "سپورٹ کرنے کے لیے اسکین کریں"
 }

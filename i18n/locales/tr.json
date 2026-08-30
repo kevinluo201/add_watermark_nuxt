@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Bu ücretsiz aracı beğendin mi?",
+  "supportMessage": "addwatermark.online sana biraz zaman kazandırdıysa, bana bir kahve ısmarla — teşekkür etmenin en tatlı yolu bu. Her yudum onu ücretsiz tutar ve daha iyi hale getirmeme yardımcı olur. 💛",
+  "supportCta": "Bana kahve ısmarla",
+  "supportScan": "Desteklemek için tara"
 }

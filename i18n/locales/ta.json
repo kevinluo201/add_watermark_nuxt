@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "இந்த ஃப்ரீ டூல் உங்களுக்கு பிடிச்சிருக்கா?",
+  "supportMessage": "addwatermark.online உங்கள் நேரத்தை கொஞ்சம் சேமிச்சிருந்தா, எனக்கு ஒரு காபி வாங்கி தாங்க — நன்றி சொல்ல அதை விட அழகான வழி இல்லை. ஒவ்வொரு சிப்பும் இதை இலவசமா வெச்சிருக்கவும் இன்னும் நல்லா பண்ணவும் எனக்கு உதவும். 💛",
+  "supportCta": "எனக்கு காபி வாங்கி தாங்க",
+  "supportScan": "சப்போர்ட் பண்ண ஸ்கேன் பண்ணுங்க"
 }

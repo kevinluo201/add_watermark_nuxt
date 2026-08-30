@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Patīk šis bezmaksas rīks?",
+  "supportMessage": "Ja addwatermark.online ietaupīja tev laiku, uzsauc man kafiju — tas ir jaukākais veids, kā pateikt paldies. Katrs malks palīdz to paturēt bezmaksas un uzlabot. 💛",
+  "supportCta": "Uzsauc man kafiju",
+  "supportScan": "Skenē un atbalsti"
 }

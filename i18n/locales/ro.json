@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Îți place unealta asta gratuită?",
+  "supportMessage": "Dacă addwatermark.online ți-a economisit un pic de timp, fă-mi cinste cu o cafea — e cel mai drăguț mod de a spune mulțumesc. Fiecare înghițitură îl ține gratuit și mă ajută să-l fac și mai bun. 💛",
+  "supportCta": "Fă-mi cinste cu o cafea",
+  "supportScan": "Scanează ca să mă susții"
 }

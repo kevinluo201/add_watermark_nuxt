@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "ਕੀ ਇਹ ਮੁਫ਼ਤ ਟੂਲ ਤੁਹਾਡੇ ਕੰਮ ਆ ਰਿਹਾ ਹੈ?",
+  "supportMessage": "ਜੇ addwatermark.online ਨੇ ਤੁਹਾਡਾ ਕੁਝ ਸਮਾਂ ਬਚਾਇਆ ਹੈ, ਤਾਂ ਮੈਨੂੰ ਕੌਫੀ ਪਿਲਾ ਦਿਓ — ਧੰਨਵਾਦ ਕਹਿਣ ਦਾ ਸਭ ਤੋਂ ਪਿਆਰਾ ਤਰੀਕਾ। ਹਰ ਘੁੱਟ ਇਸਨੂੰ ਫ੍ਰੀ ਰੱਖਣ ਅਤੇ ਹੋਰ ਵਧੀਆ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੇਗੀ। 💛",
+  "supportCta": "ਮੈਨੂੰ ਕੌਫੀ ਪਿਲਾਓ",
+  "supportScan": "ਸਪੋਰਟ ਲਈ ਸਕੈਨ ਕਰੋ"
 }

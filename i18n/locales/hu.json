@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Tetszik ez az ingyenes eszköz?",
+  "supportMessage": "Ha az addwatermark.online spórolt neked pár percet, hívj meg egy kávéra — annál szebb köszönet nincs is. Minden korty segít, hogy ingyenes maradjon, és hogy még jobbá tegyem. 💛",
+  "supportCta": "Hívj meg egy kávéra",
+  "supportScan": "Szkennelj a támogatáshoz"
 }

@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Thấy công cụ miễn phí này xịn không?",
+  "supportMessage": "Nếu addwatermark.online giúp bạn tiết kiệm được chút thời gian, mời tôi ly cà phê nhé — đó là cách cảm ơn dễ thương nhất. Mỗi ngụm giúp công cụ này vẫn miễn phí và ngày càng tốt hơn. 💛",
+  "supportCta": "Mời tôi ly cà phê",
+  "supportScan": "Quét mã để ủng hộ"
 }

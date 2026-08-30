@@ -35,5 +35,9 @@
   "mosaicPixelate": "Pixelated Mosaic",
   "mosaicSolid": "Solid Color",
   "mosaicColor": "Mask Color:",
-  "mosaicBlockSize": "Mosaic Block Size:"
+  "mosaicBlockSize": "Mosaic Block Size:",
+  "supportHeading": "Ar patinka šis nemokamas įrankis?",
+  "supportMessage": "Jei addwatermark.online sutaupė tau laiko, nupirk man kavos — tai mieliausias būdas padėkoti. Kiekvienas gurkšnis padeda išlaikyti jį nemokamą ir dar geriau jį tobulinti. 💛",
+  "supportCta": "Nupirk man kavos",
+  "supportScan": "Nuskenuok ir palaikyk"
 }
