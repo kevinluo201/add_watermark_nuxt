@@ -86,6 +86,7 @@
                     class="input"
                     type="text"
                     :placeholder="$t('watermarkPlaceholder')"
+                    @input="refreshAutoFontSize"
                   />
                 </div>
               </div>
@@ -480,6 +481,7 @@ let sourceCanvas: HTMLCanvasElement | null = null
 let interaction: OverlayInteraction | null = null
 let nextMosaicId = 1
 let webMcpToolsController: AbortController | null = null
+let fontMeasureCtx: CanvasRenderingContext2D | null = null
 
 // Form state
 const watermarkText = ref('')
@@ -535,6 +537,37 @@ const initializeCanvas = () => {
   }
 }
 
+const fitWatermarkFontSize = (text: string): number => {
+  if (!text) return 24
+
+  // Image canvas width when available; otherwise assume the max upload width
+  // so the initial size is already reasonable before a photo is chosen.
+  const canvasWidth =
+    sourceCanvas && canvas.value && canvas.value.width > 0
+      ? canvas.value.width
+      : 800
+  const targetWidth = canvasWidth * 0.9
+
+  if (!fontMeasureCtx && typeof document !== 'undefined') {
+    fontMeasureCtx = document.createElement('canvas').getContext('2d')
+  }
+
+  if (fontMeasureCtx) {
+    fontMeasureCtx.font = 'bold 100px Arial'
+    const widthAt100 = fontMeasureCtx.measureText(text).width
+    if (widthAt100 > 0) {
+      const fit = Math.floor((100 * targetWidth) / widthAt100)
+      return Math.min(150, Math.max(10, fit))
+    }
+  }
+
+  return 72
+}
+
+const refreshAutoFontSize = () => {
+  fontSize.value = fitWatermarkFontSize(watermarkText.value)
+}
+
 const trackEvent = (
   eventName: string,
   params: Record<string, unknown> = {}
@@ -546,6 +579,7 @@ const trackEvent = (
 
 const applyPreset = (presetText: string) => {
   watermarkText.value = presetText
+  refreshAutoFontSize()
   trackEvent('apply_preset', { preset: presetText })
 }
 
@@ -564,6 +598,7 @@ const handleImageUpload = event => {
     img.onload = () => {
       originalImage.value = img
       setupCanvas(img)
+      refreshAutoFontSize()
       renderCanvas()
       isImageLoaded.value = true
       drawOverlay()
@@ -1149,6 +1184,8 @@ const registerWebMcpTools = async () => {
             watermarkText.value = text
             if (isNumberInRange(requestedFontSize, 10, 150)) {
               fontSize.value = requestedFontSize
+            } else {
+              refreshAutoFontSize()
             }
             if (isNumberInRange(requestedOpacity, 0.1, 1)) {
               opacity.value = requestedOpacity
@@ -1312,10 +1349,10 @@ const reset = () => {
   }
 
   watermarkText.value = $t('defaultWatermark') || 'CONFIDENTIAL'
-  fontSize.value = 24
   opacity.value = 0.5
   position.value = 'center'
   color.value = '#ffffff'
+  refreshAutoFontSize()
 }
 
 // Watchers for reactive updates
@@ -1338,6 +1375,7 @@ watch(selectedRegionId, () => {
 
 // Initialize watermark text with translation
 watermarkText.value = $t('defaultWatermark') || 'CONFIDENTIAL'
+refreshAutoFontSize()
 
 // Initialize canvas when component mounts
 onMounted(() => {

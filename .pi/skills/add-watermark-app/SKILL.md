@@ -47,7 +47,7 @@ Users can customize:
 
 - **Quick Presets:** One-click preset buttons for common ID protection phrases (e.g., "僅供身分驗證使用，他用無效", "FOR VERIFICATION ONLY", "SOLO PARA VERIFICACIÓN")
 - **Text:** Free-form input (default is `$t('defaultWatermark')`, tailored to document protection)
-- **Font size:** Range slider 10–150px
+- **Font size:** Range slider 10–150px. The initial size is calculated automatically from the text length so a single line fits within ~90% of the canvas width; users can still override it with the slider.
 - **Opacity:** Range slider 0.1–1.0
 - **Color:** Native HTML color picker
 - **Position:**

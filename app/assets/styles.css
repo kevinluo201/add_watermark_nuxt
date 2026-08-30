@@ -100,6 +100,26 @@ body {
   border: none;
 }
 
+/* Action buttons (Download / Reset) */
+#action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  #action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #action-buttons .button {
+    width: 100%;
+  }
+}
+
 /* FAQ and How-To styling */
 .content-box {
   background: #ffffff;
