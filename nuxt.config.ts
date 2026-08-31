@@ -8,6 +8,13 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      meta: [
+        {
+          'http-equiv': 'origin-trial',
+          content:
+            'A49TSMz1iMGizl6Qg/+4tiSUOogaVHHt4XM29iEEAESEfOG6om3q2sEqqCJYtD/fyKIPjjU4lxElYzk9wD816Q8AAAB6eyJvcmlnaW4iOiJodHRwczovL2FkZHdhdGVybWFyay5vbmxpbmU6NDQzIiwiZmVhdHVyZSI6IldlYk1DUCIsImV4cGlyeSI6MTc5NDg3MzYwMCwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0='
+        }
+      ],
       link: [
         {
           rel: 'stylesheet',
