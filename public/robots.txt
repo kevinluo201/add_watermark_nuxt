@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://addwatermark.online/sitemap_index.xml
